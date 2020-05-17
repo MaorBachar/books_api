@@ -1,0 +1,13 @@
+<div class="card">
+    <img *ngIf="book&&book.img" [src]="book.img" width="250" height="300">
+    <div class="text-container">
+        <h3 class="card-title">
+            {{ (book&&book.title&&book.title.length > 70) ? (book.title | slice:0:65) + '...' : book&&book.title }}
+        </h3>
+        <span>{{book.publishedDate}}</span>
+    </div>
+    <div class="authors text-container">
+        <span *ngFor="let author of book.authors">{{author}}</span>
+    </div>
+    <button mat-raised-button (click)="removeBook()">Remove From List</button>
+</div>

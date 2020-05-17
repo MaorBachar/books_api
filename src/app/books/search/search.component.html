@@ -1,0 +1,7 @@
+<mat-form-field class="input-container">
+    <mat-label>Search for a book</mat-label>
+    <input matInput #searchElement
+           placeholder="Search"
+           (keydown.enter)="search($event)"
+           (input)="search($event)">
+</mat-form-field>

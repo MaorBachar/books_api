@@ -1,0 +1,35 @@
+<div class="action-container">
+    <app-search (searchInputEvent)="search($event)" [searchInputText]="searchInputText"></app-search>
+    <button mat-raised-button [disabled]="!selectedRows || selectedRows&&selectedRows.length === 0" (click)="addBooksToWishList()">Add ({{selectedRows&&selectedRows.length ? selectedRows.length : 0}}) books to my wish list</button>
+</div>
+<p-table *ngIf="data" [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
+    [rows]="10" [totalRecords]="pagination.totalRecords" [(selection)]="selectedRows" [rowHover]="true" [loading]="loading">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 3em">
+                <p-checkbox (click)="selectAllRows(selectAll.checked)" #selectAll></p-checkbox>
+            </th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td>
+                <p-tableCheckbox [value]="rowData" [disabled]="dataDictionary[rowData.id]"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns" [ngSwitch]="col.type">
+                <span *ngSwitchCase="'text'">{{rowData[col.field]}}</span>
+                <img *ngSwitchCase="'img'" width="128" height="180" [src]="rowData[col.field]">
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <ul>
+            <li *ngFor="let row of selectedRows" style="text-align: left">
+                {{row.title}}
+            </li>
+        </ul>
+    </ng-template>
+</p-table>

@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="empty" *ngIf="myBooks.length === 0; else cards">
+        Books list is empty
+    </div>
+    <ng-template #cards>
+        <app-book-detail *ngFor="let book of myBooks" (removeBookEvent)="removeFromMyBooksList($event)" [book]="book">
+        </app-book-detail>
+    </ng-template>
+</div>

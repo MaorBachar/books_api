@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchEl.nativeElement.value = this.searchInputText;
     this.searchSubscription = this.searchSubject.pipe(
-      debounceTime(450),
+      debounceTime(550),
       distinctUntilChanged()
     ).subscribe((text: string) => {
       this.searchInputEvent.emit(text);

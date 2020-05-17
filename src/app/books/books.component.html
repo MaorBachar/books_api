@@ -2,7 +2,7 @@
     <app-search (searchInputEvent)="search($event)" [searchInputText]="searchInputText"></app-search>
     <button mat-raised-button [disabled]="!selectedRows || selectedRows&&selectedRows.length === 0" (click)="addBooksToWishList()">Add ({{selectedRows&&selectedRows.length ? selectedRows.length : 0}}) books to my wish list</button>
 </div>
-<p-table *ngIf="data" [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
+<p-table *ngIf="data" [columns]="cols" [value]="data" [lazy]="true"  [lazyLoadOnInit]="false" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
     [rows]="10" [totalRecords]="pagination.totalRecords" [(selection)]="selectedRows" [rowHover]="true" [loading]="loading"  [first]="pagination.first">
     <ng-template pTemplate="header" let-columns>
         <tr>

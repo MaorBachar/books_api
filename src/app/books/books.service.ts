@@ -20,8 +20,8 @@ export class BooksService {
     public search(text: string, pagination: Pagination = new Pagination) {
         this.searchInputText = text;
         this.httpClient.get(this.baseUrl + text + `&startIndex=${pagination.first}&maxResults=${pagination.itemsPerPage}`).subscribe((res: any) => {
-            this.pagination.totalRecords = res.totalItems;
             this.pagination = pagination;
+            this.pagination.totalRecords = res.totalItems;
             if(!res.items){
                 res.items = [];
             }
@@ -57,5 +57,6 @@ export class BooksService {
     public getSearchInputText() {
         return this.searchInputText;
     }
+
 
 }

@@ -9,3 +9,9 @@
     flex-wrap: wrap;
     padding-bottom: 10px;
 }
+
+.disabled{
+        cursor: not-allowed;
+        background-color: lightgrey!important;
+        pointer-events: none;
+}

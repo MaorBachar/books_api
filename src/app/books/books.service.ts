@@ -22,9 +22,12 @@ export class BooksService {
         this.httpClient.get(this.baseUrl + text + `&startIndex=${pagination.first}&maxResults=${pagination.itemsPerPage}`).subscribe((res: any) => {
             this.pagination.totalRecords = res.totalItems;
             this.pagination = pagination;
-            if(res.items){
-                this.setBooksData(res.items);
+            if(!res.items){
+                res.items = [];
             }
+            this.setBooksData(res.items);
+
+
         })
     }
 

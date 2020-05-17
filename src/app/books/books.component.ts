@@ -62,7 +62,6 @@ export class BooksComponent implements OnInit {
 
   }
   search(searchText) {
-    debugger
     if (searchText) {
       this.searchInputText = searchText;
       this.lazyLoad({ first: 0 });
@@ -70,7 +69,6 @@ export class BooksComponent implements OnInit {
   }
 
   lazyLoad(event: LazyLoadEvent) {
-    debugger
     this.loading = true;
     this.pagination.first = event.first;
     this.booksService.search(this.searchInputText, this.pagination);
